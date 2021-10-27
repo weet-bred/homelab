@@ -14,7 +14,7 @@ echo -n 'waiting'
 while [ 1 -eq 1 ]
 do
 	# Attemp to SSH to the system
-	ssh -q -o ConnectTimeout=8 ${system}
+	ssh -q -o ConnectTimeout=8 ${system} 2>/dev/null
 	# If it doesn't work, print a dot, wait 2 seconds, and try again
 	echo -n '.'
 	sleep 2
