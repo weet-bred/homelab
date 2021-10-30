@@ -6,6 +6,7 @@
 # - ipa-client
 # - authselect-compat
 # - htop
+# - rsyslog
 
 # Configure these:
 # - sshd (no root login)
@@ -16,5 +17,8 @@
 # authconfig --enablemkhomedir --update
 # - create home directory
 # - add %admins to the sudoers file
+# - configure logging - add this to the /etc/rsyslog.conf:
+#   *.* @logging.pengels.local:20514;RSYSLOG_SyslogProtocol23Format
 
-# Maybe API to add host to OpenVAS?
+# Add DHCP entry and DNS entry in pfSense
+

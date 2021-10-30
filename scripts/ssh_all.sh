@@ -9,5 +9,5 @@ systems=$(cat /home/pengels/configs/all_systems.txt)
 # SSH to the systems one at a time
 for system in ${systems}
 do
-	ssh ${system} 
+	ssh -o ConnectTimeout=10 ${system} 
 done
