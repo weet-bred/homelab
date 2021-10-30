@@ -34,7 +34,7 @@ for system in ${apt_systems}
 do
 	echo ${system}
 	ssh -o ConnectTimeout=10 ${system} "sudo apt update -y"
-	ssh -o ConnectTimeout=10 ${system} "sudo apt updgrade -y"
+	ssh -o ConnectTimeout=10 ${system} "sudo apt upgrade -y"
 done
 
 # Special Software
