@@ -6,6 +6,9 @@
 
 reboot_systems=$(cat /home/pengels/configs/reboot_list.txt)
 
+# Print the date for log purposes
+date
+
 # Loop through all of the systems in the list
 for system in ${reboot_systems}
 do

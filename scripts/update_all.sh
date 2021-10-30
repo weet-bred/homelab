@@ -19,6 +19,9 @@ openvas_systems=$(cat /home/pengels/configs/openvas_systems.txt)
 # All the systems running pihole
 pihole_systems=$(cat /home/pengels/configs/pihole_systems.txt)
 
+# Print the date for log purposes
+date
+
 # Run package updates on the dnf systems
 for system in ${dnf_systems}
 do
