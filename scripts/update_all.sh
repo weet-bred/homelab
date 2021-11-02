@@ -28,37 +28,37 @@ echo -e "\n####################################################\n Starting updat
 # Run package updates on the dnf systems
 for system in ${dnf_systems}
 do
-	echo "${system} sudo dnf update -y"
+	echo -e "\n${system} sudo dnf update -y"
 	ssh -o ConnectTimeout=10 ${system} "sudo dnf update -y"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 # Run package updates on the yum systems
 for system in ${yum_systems}
 do
-	echo "${system} sudo yum update -y"
+	echo -e "\n${system} sudo yum update -y"
 	ssh -o ConnectTimeout=10 ${system} "sudo yum update -y"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 # Run package updates on the apt systems
 for system in ${apt_systems}
 do
 	# Update package list 
-	echo "${system} sudo apt-get update -y"
+	echo -e "\n${system} sudo apt-get update -y"
 	ssh -o ConnectTimeout=10 ${system} "sudo apt-get update -y"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 
 	# Update packages
-	echo "${system} sudo apt-get upgrade -y"
+	echo -e "\n${system} sudo apt-get upgrade -y"
 	ssh -o ConnectTimeout=10 ${system} "sudo apt-get upgrade -y -q"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 
 	# Remove unneeded packages
-	echo "${system} sudo apt-get upgrade -y"
-	echo "${system} sudo apt-get autoremove -y"
+	echo -e "\n${system} sudo apt-get upgrade -y"
+	echo -e "\n${system} sudo apt-get autoremove -y"
 	ssh -o ConnectTimeout=10 ${system} "sudo apt-get autoremove -y -q"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 # Special Software
@@ -67,42 +67,38 @@ for system in ${pihole_systems}
 do
 	echo ${system}
 	# Update pihole, FTL, and the web interface
-	echo "${system} sudo pihole -up"
+	echo -e "\n${system} sudo pihole -up"
 	ssh -o ConnectTimeout=10 ${system} "sudo pihole -up"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 
 	# Update the domains in the block lists
-	echo "${system} sudo pihole updateGravity"
+	echo -e "\n${system} sudo pihole updateGravity"
 	ssh -o ConnectTimeout=10 ${system} "sudo pihole updateGravity"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 for system in ${suricata_systems}
 do
 	# Update definitions. The suricata package is managed by the system package manager
-	echo "${system} sudo suricata-update"
+	echo -e "\n${system} sudo suricata-update"
 	ssh -o ConnectTimeout=10 ${system} "sudo suricata-update"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 for system in ${openvas_systems}
 do
 	# Update all the backend data that openvas uses
-	echo "${system} greenbone-certdata-sync"
+	echo -e "\n${system} greenbone-certdata-sync"
 	ssh -o ConnectTimeout=10 ${system} "greenbone-certdata-sync"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 
-	echo "${system} greenbone-feed-sync"
-	ssh -o ConnectTimeout=10 ${system} "greenbone-feed-sync"
-	echo "Retcode=${?}"
-
-	echo "${system} greenbone-nvt-sync"
+	echo -e "\n${system} sudo su - gvm -c 'greenbone-nvt-sync --curl --verbose'"
 	ssh -o ConnectTimeout=10 ${system} "greenbone-nvt-sync"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 
-	echo "${system} greenbone-scapdata-sync"
+	echo -e "\n${system} greenbone-scapdata-sync"
 	ssh -o ConnectTimeout=10 ${system} "greenbone-scapdata-sync"
-	echo "Retcode=${?}"
+	echo -e "Retcode=${?}"
 done
 
 echo -e "\n####################################################\n Ending update on $(date)\n####################################################\n"
