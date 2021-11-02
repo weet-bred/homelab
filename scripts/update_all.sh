@@ -93,7 +93,7 @@ do
 	echo -e "Retcode=${?}"
 
 	echo -e "\n${system} sudo su - gvm -c 'greenbone-nvt-sync --curl --verbose'"
-	ssh -o ConnectTimeout=10 ${system} "greenbone-nvt-sync"
+	ssh -o ConnectTimeout=10 ${system} "sudo su - gvm -c 'greenbone-nvt-sync'"
 	echo -e "Retcode=${?}"
 
 	echo -e "\n${system} greenbone-scapdata-sync"
