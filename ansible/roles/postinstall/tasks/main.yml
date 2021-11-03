@@ -14,10 +14,3 @@
 # manually do to: register DHCP entry in pfSense and DNS in PiHole
 - import_tasks: notify.yml
   tags: notify
-  
-- debug: 
-    msg: "Reminder to add hosts to FreeIPA, DNS, and DHCP."
-    
-- debug:
-    msg: "scp /home/pengels/homelab/scripts/ipa_register.sh root@{{ inventory_hostname}}:"
-

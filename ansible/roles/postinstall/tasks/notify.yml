@@ -1,3 +1,14 @@
-- name: notify | print hostname and mac address
-  debug:
+- debug:
     msg: "Host {{ inventory_hostname }} has mac address {{ hostvars[inventory_hostname].ansible_default_ipv4.macaddress }}"
+
+- debug:
+    msg: "Reminder to add hosts to FreeIPA, DNS, and DHCP."
+
+- debug:
+    msg: "scp /home/pengels/homelab/scripts/ipa_register.sh root@{{ inventory_hostname}}:"
+
+- debug:
+    msg: "ssh root@{{ inventory_hostname }} ./ipa_register.sh"
+
+- debug:
+    msg: "ssh root@{{ inventory_hostname }} systemctl restart sshd"
