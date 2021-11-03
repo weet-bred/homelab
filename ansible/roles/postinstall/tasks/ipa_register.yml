@@ -1,0 +1,5 @@
+# Register the system to my freeipa instance
+
+- name: ipa_register | run the files/ipa_register.sh script 
+  script: files/ipa_register.sh
+  notify: enable sssd

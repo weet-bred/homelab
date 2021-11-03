@@ -1,3 +1,14 @@
-# Example: import a task file and add a tag
-#- import_tasks: template_task.yml
-#  tags: template_task
+# Install all the required packages first
+- import_tasks: packages.yml
+  tags: packages
+
+# File configuration - ssh, logging, sudoers, etc.
+# after packages in case there are dependencies
+- import_tasks: base_files.yml
+  tags: base_files
+
+# at the end, register with freeipa. that's the only application that requires registration
+- import_tasks: ipa_register.yml
+  tags: ipa_register
+
+# manually do to: register DHCP entry in pfSense and DNS in PiHole

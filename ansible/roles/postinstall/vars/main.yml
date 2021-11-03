@@ -1,5 +1,13 @@
-# Example variable
-#
-#template_var:
-# - template_1
-# - template_2
+# Packages to install
+packages_all:
+ - vim
+ - fail2ban
+ - htop
+ - rsyslog
+
+packages_apt:
+ - freeipa-client
+
+packages_dnf:
+ - authselect-compat
+ - ipa-client

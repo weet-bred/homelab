@@ -1,0 +1,27 @@
+# Disable SSH root login
+- name: base_files | disable root SSH login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PermitRootLogin'
+    line: "PermitRootLogin no"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: restart sshd
+
+# Add reference to my logging server in /etc/rsyslog.conf
+# This will just add the line to the end of the file if the line isn't already there
+- name: base_files | send logs to the logging VM
+  lineinfile:
+    path: /etc/rsyslog.conf
+    line: "*.* @logging.pengels.local:20514;RSYSLOG_SyslogProtocol23Format"
+  notify: restart rsyslog
+
+# copy the admins sudoers file to the system
+- name: base_files | copy my admin sudoers file to the system
+  copy:
+    src: files/admins.sudoers
+    dest: /etc/sudoers.d/admins
+    mode: '0440'
+    owner: root
+    group: root

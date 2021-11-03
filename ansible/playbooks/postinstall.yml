@@ -3,14 +3,17 @@
 # Last updated: See 'git log -p <filename>
 # REcent changes: See 'git log -p <filename>
 
-
 # Hosts: group_name or 'all'
-- hosts:
-  - group_name_here
+- hosts: 
+  - all
+
+# roles, located in ../roles
+  roles: 
+  - postinstall
 
 # Gather facts yes or no
 #gather_facts: no
-gather_facts: yes
+  gather_facts: yes
 
 # Gather only ansible_distribution info (OS attributes)
 # - '!all' 

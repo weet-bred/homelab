@@ -7,6 +7,10 @@
 - hosts:
   - group_name_here
 
+# roles, located in ../roles
+roles: TEMPLATE
+
+
 # Gather facts yes or no
 #gather_facts: no
 gather_facts: yes
