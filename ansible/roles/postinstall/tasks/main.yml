@@ -8,7 +8,16 @@
   tags: base_files
 
 # at the end, register with freeipa. that's the only application that requires registration
-- import_tasks: ipa_register.yml
-  tags: ipa_register
+#- import_tasks: ipa_register.yml
+#  tags: ipa_register
 
 # manually do to: register DHCP entry in pfSense and DNS in PiHole
+- import_tasks: notify.yml
+  tags: notify
+  
+- debug: 
+    msg: "Reminder to add hosts to FreeIPA, DNS, and DHCP."
+    
+- debug:
+    msg: "scp /home/pengels/homelab/scripts/ipa_register.sh root@{{ inventory_hostname}}:"
+

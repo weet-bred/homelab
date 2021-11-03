@@ -3,25 +3,21 @@
   service:
     name: sshd
     state: restarted
-    enabled: yes
 
 # enable and start fail2ban
 - name: restart fail2ban
   service:
     name: fail2ban
     state: restarted
-    enabled: yes
 
 # enable and start rsyslog
 - name: restart rsyslog
   service:
     name: rsyslog
     state: restarted
-    enabled: yes
 
 # enable and start sssd
 - name: enable sssd
   service:
     name: sssd
     state: started
-    enabled: yes

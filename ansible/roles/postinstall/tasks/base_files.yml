@@ -7,7 +7,7 @@
     owner: root
     group: root
     mode: '0600'
-  notify: restart sshd
+  #notify: restart sshd
 
 # Add reference to my logging server in /etc/rsyslog.conf
 # This will just add the line to the end of the file if the line isn't already there
@@ -25,3 +25,29 @@
     mode: '0440'
     owner: root
     group: root
+
+#- name: restart sshd
+#  service:
+#    name: sshd
+#    state: restarted
+
+# enable and start fail2ban
+- name: restart fail2ban
+  service:
+    name: fail2ban
+    state: restarted
+    enabled: yes
+
+# enable and start rsyslog
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+    enabled: yes
+
+# enable and start sssd
+#- name: enable sssd
+#  service:
+#    name: sssd
+#    state: restarted
+#    enabled: yes
