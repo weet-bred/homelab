@@ -1,0 +1,3 @@
+# Example: import a task file and add a tag
+#- import_tasks: template_task.yml
+#  tags: template_task

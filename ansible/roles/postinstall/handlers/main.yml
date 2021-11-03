@@ -1,0 +1,6 @@
+# Example: Restart myservice
+#
+#- name: restart myservice
+#  service:
+#    name: myservice
+#    state: restarted
