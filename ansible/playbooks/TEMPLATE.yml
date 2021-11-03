@@ -3,7 +3,6 @@
 # Last updated: See 'git log -p <filename>
 # REcent changes: See 'git log -p <filename>
 
-
 # Hosts: group_name or 'all'
 - hosts:
   - group_name_here
