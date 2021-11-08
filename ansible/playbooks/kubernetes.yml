@@ -1,0 +1,21 @@
+# File: TEMPLATE_PLAYBOOK.yml
+# Description: PLAYBOOK DESCRIPTION HERE
+# Last updated: See 'git log -p <filename>
+# REcent changes: See 'git log -p <filename>
+
+# Hosts: group_name or 'all'
+- hosts:
+  - kubernetes
+
+# roles, located in ../roles
+roles: kubernetes
+
+
+# Gather facts yes or no
+#gather_facts: no
+gather_facts: yes
+
+# Gather only ansible_distribution info (OS attributes)
+# - '!all' 
+# - '!min' 
+# - 'distribution' 
