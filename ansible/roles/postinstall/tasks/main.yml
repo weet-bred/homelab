@@ -14,3 +14,6 @@
 # manually do to: register DHCP entry in pfSense and DNS in PiHole
 - import_tasks: notify.yml
   tags: notify
+    
+- import_tasks: firewall.yml
+  tags: firewall

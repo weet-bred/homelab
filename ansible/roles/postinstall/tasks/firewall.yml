@@ -1,0 +1,22 @@
+# Enable firewalld for fedora and centos
+# FirewallD has SSH allowed by default
+- name: firewall | set default firewall (RHEL)
+  service: 
+    name: firewalld
+    state: started
+    enabled: yes
+  when: ansible_facts['distribution'] == "Fedora" or ansible_facts['distribution'] == "CentOS"
+
+# Add SSH to UFW before starting it
+- name: firewall | allow SSH for UFW (Ubuntu/Debian)
+  ufw:
+    rule: allow
+    name: OpenSSH
+  when: ansible_facts['distribution'] == "Ubuntu" or ansible_facts['distribution'] == "Debian"
+
+# Enable ufw for ubuntu and debian
+- name: firewall | set default firewall (Ubuntu/Debian)
+  ufw:
+    state: enabled
+    policy: deny
+  when: ansible_facts['distribution'] == "Ubuntu" or ansible_facts['distribution'] == "Debian"
