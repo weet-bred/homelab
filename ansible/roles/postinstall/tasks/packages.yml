@@ -1,19 +1,19 @@
 # Use the default system package manager to install distribution-agnostic packages
 - name: packages | install the base packages defined in main.yml
   package:
-    state: installed
+    state: present
     name: "{{ packages_all }}"
 
 # Use the default system package manager to install DEBs
 - name: packages | do the apt-specific ones if this is an apt system
   package:
-    state: installed
+    state: present
     name: "{{ packages_apt }}"
   when: ansible_facts['distribution'] == "Ubuntu" or ansible_facts['distribution'] == "Debian"
 
 # Use the default system package manager to install RPMs 
 - name: packages | do the dnf-specific ones if this is a dnf system
   package:
-    state: installed
+    state: present
     name: "{{ packages_dnf }}"
   when: ansible_facts['distribution'] == "Fedora" or ansible_facts['distribution'] == "CentOS"
