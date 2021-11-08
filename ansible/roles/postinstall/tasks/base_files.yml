@@ -13,8 +13,19 @@
 - name: base_files | allow X11 forwarding
   lineinfile:
     path: /etc/ssh/sshd_config
-    regexp: '^#11Forwarding no'
-    line: "11Forwarding yes"
+    regexp: '^#X11Forwarding no'
+    line: "X11Forwarding yes"
+    owner: root
+    group: root
+    mode: '0600'
+  #notify: restart sshd
+  
+# Allow X11
+- name: base_files | allow X11 forwarding
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#X11UseLocalhost'
+    line: "X11UseLocalhost no"
     owner: root
     group: root
     mode: '0600'
