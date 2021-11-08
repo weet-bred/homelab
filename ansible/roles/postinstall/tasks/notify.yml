@@ -2,7 +2,7 @@
     msg: "Host {{ inventory_hostname }} has mac address {{ hostvars[inventory_hostname].ansible_default_ipv4.macaddress }}"
 
 - debug:
-    msg: "Reminder to add hosts to FreeIPA, DNS, and DHCP."
+    msg: "Reminder to add hosts to ~/config/*.txt, FreeIPA, DNS, and DHCP. Set up firewalld on this machine."
 
 - debug:
     msg: "scp /home/pengels/homelab/scripts/ipa_register.sh root@{{ inventory_hostname}}:"
