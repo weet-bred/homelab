@@ -4,3 +4,13 @@
 #  service:
 #    name: myservice
 #    state: restarted
+#
+#- handlers:
+#  - name: apply sysctl changes
+#    command: sudo sysctl --system
+#
+#  - name: enable kubelet
+#    service:
+#      name: kubelet
+#      state: started
+#      enabled: yes

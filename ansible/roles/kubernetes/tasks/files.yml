@@ -1,0 +1,44 @@
+# This task copies files to the remote system
+
+- name: files | copy k8s.conf to /etc/sysctl.d/
+  copy:
+    src: files/sysctl.d-k8s.conf
+    dest: /etc/sysctl.d/k8s.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: apply sysctl changes
+
+- name: files | copy k8s.conf to /etc/modules-load.d/
+  copy:
+    src: files/modules-load.d-k8s.conf
+    dest: /etc/modules-load.d/k8s.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: apply sysctl changes
+
+- name: files | copy kubernetes.repo to /etc/yum.repos.d/
+  copy:
+    src: files/kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+    owner: root
+    group: root
+    mode: 0644
+  notify: dnf makecache
+  register: result
+
+## Only run this when copying the file made a change
+- name: files | clean repo cache after copying the kubernetes repo config 
+  command: 
+    cmd: "dnf clean all"
+     
+- name: files | update repo cache after copying the kubernetes repo config 
+  command:
+    cmd: "dnf makecache"
+
+# Only run this when copying the file made a change
+#- name: files | update repo cache after copying the kubernetes repo config
+#  dnf:
+#    update_cache: yes
+#  when: result is succeeded

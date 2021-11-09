@@ -1,0 +1,6 @@
+# This one sets up the operating system for kubernetes
+
+- name: os-setup | set SELinux to permissive mode
+  selinux:
+    policy: targeted
+    state: permissive

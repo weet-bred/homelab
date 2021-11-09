@@ -3,17 +3,32 @@
 # Last updated: See 'git log -p <filename>
 # REcent changes: See 'git log -p <filename>
 
+- name: install kubernetes on a host machine
 # Hosts: group_name or 'all'
-- hosts:
-  - kubernetes
+  hosts: kubernetes
 
 # roles, located in ../roles
-roles: kubernetes
+  roles: 
+    - role: kubernetes
 
 
 # Gather facts yes or no
 #gather_facts: no
-gather_facts: yes
+  gather_facts: yes
+
+  handlers:
+  - name: apply sysctl changes
+    command: sudo sysctl --system
+
+  - name: enable kubelet
+    service:
+      name: kubelet
+      state: started
+      enabled: yes
+
+  - name: dnf makecache
+    dnf: 
+      update_cache: yes
 
 # Gather only ansible_distribution info (OS attributes)
 # - '!all' 

@@ -1,5 +1,7 @@
 # Example variable
 #
-#template_var:
-# - template_1
-# - template_2
+packages:
+ - kubelet
+ - kubeadm
+ - kubectl
+ - docker

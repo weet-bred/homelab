@@ -1,0 +1,9 @@
+# This task copies files to the remote system
+
+- name: firewall | open port 6443 (Fedora)
+  firewalld:
+    port: 6443/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+    zone: public
