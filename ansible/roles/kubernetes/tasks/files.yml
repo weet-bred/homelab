@@ -18,6 +18,9 @@
     mode: 0644
   notify: apply sysctl changes
 
+- name: files | apply sysctl changes
+  command: sudo sysctl --system
+
 - name: files | copy kubernetes.repo to /etc/yum.repos.d/
   copy:
     src: files/kubernetes.repo
