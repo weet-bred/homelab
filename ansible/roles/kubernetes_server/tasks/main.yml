@@ -1,0 +1,8 @@
+# Main.yml imports the other tasks in this directory and assigns tags to them
+
+- import_tasks: firewall.yml
+  tags: firewall
+
+- import_tasks: packages.yml
+  tags: packages
+

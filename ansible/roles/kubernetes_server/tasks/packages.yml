@@ -1,0 +1,18 @@
+# This task installs the required packages for kubernetes to function
+- name: packages | install required packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  notify: enable kubelet
+  loop: "{{ packages }}"
+#
+#- name: packages | install required packages the dumb way because for some reason the right way doesn't work
+#  command:
+#    cmd: "yum install kubelet kubectl kubeadm docker -y"
+#
+#- name: enable kubelet
+#  service:
+#    name: kubelet
+#    state: started
+#    enabled: yes
+

@@ -1,0 +1,13 @@
+# This task copies files to the remote system
+
+- name: firewall | open required ports (FirewallD)
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+    zone: public
+  loop: "{{ firewall_ports }}"
+
+- name: firewall | apply port changes (FirewallD)
+  command:
+    cmd: firewall-cmd --reload
