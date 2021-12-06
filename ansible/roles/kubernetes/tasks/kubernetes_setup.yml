@@ -1,0 +1,3 @@
+- name: kubernetes_setup | join to the cluster
+  command:
+    cmd: kubeadm join 192.168.8.214:6443 --token lxxcpm.e0r5lznkg581dgeo --discovery-token-ca-cert-hash sha256:34cc5471be7299382d5e7252bb1d0693b6688496e370fe229754181e6fa9b9f8

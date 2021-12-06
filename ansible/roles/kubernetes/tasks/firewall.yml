@@ -1,9 +1,9 @@
 # This task copies files to the remote system
 
-- name: firewall | open port 6443 (Fedora)
+- name: firewall | open required ports (FirewallD)
   firewalld:
-    port: 6443/tcp
+    port: "{{ item }}"
     permanent: yes
     state: enabled
-    immediate: yes
-    zone: public
+  loop: "{{ firewall_ports }}"
+  notify: reload firewalld

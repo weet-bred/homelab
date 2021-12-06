@@ -1,16 +1,23 @@
-# Example: Restart myservice
-#
-#- name: restart myservice
-#  service:
-#    name: myservice
-#    state: restarted
-#
-#- handlers:
-#  - name: apply sysctl changes
-#    command: sudo sysctl --system
-#
-#  - name: enable kubelet
-#    service:
-#      name: kubelet
-#      state: started
-#      enabled: yes
+- name: apply sysctl changes
+  command: sudo sysctl --system
+
+- name: enable kubelet
+  service:
+    name: kubelet
+    state: started
+    enabled: yes
+
+- name: enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+#- name: dnf makecache
+#  dnf:
+#    update_cache: yes
+
+- name: reload firewalld
+  command:
+    cmd: firewall-cmd --reload
+

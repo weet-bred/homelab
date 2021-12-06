@@ -1,7 +1,22 @@
 # Example variable
 #
+firewall_ports:
+ - 10250-10252/tcp
+ - 10255/tcp
+ - 2379/tcp
+ - 2380/tcp
+ - 6443/tcp
+
 packages:
- - kubelet
  - kubeadm
  - kubectl
- - docker
+ - kubelet
+ - docker-ce
+ - docker-ce-cli
+ - containerd.io
+
+
+gpg_keys:
+ - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+ - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+ - https://download.docker.com/linux/fedora/gpg
